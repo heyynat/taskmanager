@@ -5,6 +5,28 @@ O projeto Task Manager, é uma API simples de gerenciamento de tarefas, desenvol
 ## Estrutura do Projeto
 
 ~~~txt
+TASKMANAGER
+├── .eslintrc             # Arquivo de configuração do ESLint
+├── .gitignore            # Arquivo de ignorar do Git
+├── jest.config.js        # Arquivo de configuração do Jest
+├── package-lock.json     # Arquivo de bloqueio de dependências
+├── package.json          # Dependências do projeto
+├── README.md             # Documentação do projeto
+├── tsconfig.json         # Configuração do compilador TypeScript
+├── prisma                # Diretório Prisma
+│   └── schema.prisma      # Arquivo de esquema Prisma
+├── src                   # Diretório do código fonte
+│   ├── controllers       # Diretório de controladores
+│   │   └── taskController.ts  # Arquivo do controlador de tarefas
+│   ├── interfaces        # Diretório de interfaces
+│   │   └── task.ts         # Arquivo de interface de tarefas
+│   ├── prisma            # Diretório do cliente Prisma
+│   │   └── index.ts         # Arquivo de índice do cliente Prisma
+│   ├── services          # Diretório de serviços
+│   │   └── taskService.ts   # Arquivo de serviço de tarefas
+│   ├── tests              # Diretório de testes (provavelmente contendo arquivos de teste)
+│   └── routes.ts          # Arquivo de rotas (define os endpoints da API)
+└── server.ts             # Arquivo do servidor (ponto de entrada da aplicação)
 ~~~
 
 ## Tecnologias utilizadas:
