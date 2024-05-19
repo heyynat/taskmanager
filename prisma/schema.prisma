@@ -21,5 +21,5 @@ model Task {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
   
-  @@map("customers")
+  @@map("tasks")
 }
