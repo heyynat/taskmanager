@@ -5,8 +5,8 @@
   "scripts": {
     "test": "jest",
     "dev": "tsx watch src/server.ts",
-    "lint": "eslint ./src ./tests --ext .ts",
-    "lint:fix": "eslint ./src ./tests --ext .ts --fix"
+    "lint": "eslint ./src ./src/tests --ext .ts",
+    "lint:fix": "eslint ./src ./src/tests --ext .ts --fix"
   },
   "keywords": [],
   "author": "",
