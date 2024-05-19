@@ -34,7 +34,10 @@ Configure o arquivo .env com as informações do seu banco de dados MongoDB.
 Execute as migrações do Prisma:
 
 ~~~bash
-npx prisma migrate dev
+npx prisma generate
+npx prisma migrate
+npx prisma studio
+
 ~~~
 
 Inicie o servidor:
