@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "vercel-build": "npx prisma migrate deploy",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint ./src ./src/tests --ext .ts",
     "lint:fix": "eslint ./src ./src/tests --ext .ts --fix"
