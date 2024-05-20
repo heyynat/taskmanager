@@ -13,6 +13,7 @@ O projeto Task Manager, é uma API simples de gerenciamento de tarefas, desenvol
 - Framework: Fastify
 - ORM: Prisma
 - Banco de Dados: MongoDB
+- Plataforma Deploy: Vercel
 
 ## Instruções de Instalação
 
@@ -31,13 +32,11 @@ npm install
 
 Configure o arquivo .env com as informações do seu banco de dados MongoDB.
 
-Execute as migrações do Prisma:
+Execute a inicialização do Prisma:
 
 ~~~bash
 npx prisma generate
-npx prisma migrate
 npx prisma studio
-
 ~~~
 
 Inicie o servidor:
