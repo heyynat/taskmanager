@@ -10,4 +10,5 @@ export async function routes(fastify: FastifyInstance) {
     fastify.get("/tasks/:id", TaskController.getTaskById);
     fastify.put("/tasks/edit/:id", TaskController.updateTask);
     fastify.delete("/tasks/:id", TaskController.deleteTask);
+    fastify.put("/tasks/:id/transition_status", TaskController.transitionTaskStatus);
 }

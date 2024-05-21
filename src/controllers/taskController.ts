@@ -1,11 +1,10 @@
-import { CreateTaskDTO, UpdateTaskDTO } from "../interfaces/task";
-import prismaClient from "../prisma";
+import { Task, TaskStatus, UpdateTaskDTO } from "../interfaces/task";
 import { FastifyRequest, FastifyReply } from "fastify";
 import TaskService from "../services/taskService";
 
 class TaskController {
   static async createTask(request: FastifyRequest, reply: FastifyReply) {
-    const newTask = request.body as CreateTaskDTO;
+    const newTask = request.body as Task;
 
     try {
       const createdTask = await TaskService.createTask(newTask);
@@ -20,7 +19,8 @@ class TaskController {
       const tasks = await TaskService.getTasks();
       reply.code(200).send(JSON.stringify(tasks));
     } catch (error) {
-      reply.code(500).send(JSON.stringify({ message: "Erro ao obter tarefas" }));
+      const errorMessage = error instanceof Error ? error.message : 'Erro ao obter tarefas';
+      reply.code(404).send({ message: errorMessage });
     }
   }
 
@@ -29,12 +29,10 @@ class TaskController {
 
     try {
       const task = await TaskService.getTaskById(id);
-      if (!task) {
-        return reply.code(404).send(JSON.stringify({ message: "Tarefa não encontrada" }));
-      }
       reply.code(200).send(JSON.stringify(task));
     } catch (error) {
-      reply.code(500).send(JSON.stringify({ message: "Erro ao obter tarefa" }));
+      const errorMessage = error instanceof Error ? error.message : 'Erro ao obter tarefa';
+      reply.code(404).send({ message: errorMessage });
     }
   }
 
@@ -44,12 +42,10 @@ class TaskController {
 
     try {
       await TaskService.updateTask(id, updatedTask);
-      if (!updatedTask) {
-        return reply.code(404).send(JSON.stringify({ message: "Tarefa não encontrada" }));
-      }
       reply.code(200).send(JSON.stringify(updatedTask));
     } catch (error) {
-      reply.code(500).send(JSON.stringify({ message: "Erro ao atualizar tarefa" }));
+      const errorMessage = error instanceof Error ? error.message : 'Erro ao atualizar tarefa';
+      reply.code(500).send({ message: errorMessage });
     }
   }
 
@@ -58,10 +54,24 @@ class TaskController {
 
     try {
       await TaskService.deleteTask(id);
-      await prismaClient.task.delete({ where: { id } });
       reply.code(200).send(JSON.stringify({ message: "Tarefa excluída com sucesso" }));
     } catch (error) {
-      reply.code(500).send(JSON.stringify({ message: "Erro ao excluir tarefa" }));
+      const errorMessage = error instanceof Error ? error.message : 'Erro ao excluir tarefa';
+      reply.code(500).send({ message: errorMessage });
+    }
+  }
+
+  static async transitionTaskStatus(request: FastifyRequest, reply: FastifyReply) {
+    const { id } = request.params as { id: string };
+    const { status } = request.body as { status: TaskStatus };
+
+    try {
+      await TaskService.transitionTaskStatus(id, status);
+      reply.code(200).send({ message: 'Status da tarefa atualizado com sucesso.' });
+
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Erro ao atualizar tarefa';
+      reply.code(500).send({ message: errorMessage });
     }
   }
 }
