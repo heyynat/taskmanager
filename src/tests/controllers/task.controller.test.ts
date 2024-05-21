@@ -1,5 +1,5 @@
 import TaskController from '../../controllers/taskController';
-import { CreateTaskDTO } from '../../interfaces/task';
+import { Task } from '../../interfaces/task';
 import TaskService from '../../services/taskService';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
@@ -16,7 +16,7 @@ describe('TaskController', () => {
 
   describe('createTask', () => {
     test('should create a task successfully', async () => {
-      const newTask: CreateTaskDTO = { title: 'Nova Tarefa' };
+      const newTask: Task = { title: 'Nova Tarefa' };
       const createdTask = { id: '1', title: 'Nova Tarefa', description: null, status: 'pending', created_at: null, updated_at: null };
 
       jest.spyOn(TaskService, 'createTask').mockResolvedValueOnce(createdTask);
@@ -33,7 +33,7 @@ describe('TaskController', () => {
     });
 
     test('should return 500 error on create task failure', async () => {
-      const newTask: CreateTaskDTO = { title: 'Nova Tarefa' };
+      const newTask: Task = { title: 'Nova Tarefa' };
       const error = new Error('Erro ao criar tarefa');
 
       jest.spyOn(TaskService, 'createTask').mockRejectedValueOnce(error);
