@@ -102,10 +102,7 @@ describe('TaskController', () => {
   describe('updateTask', () => {
     test('should update a task successfully', async () => {
       const taskId = '1';
-      const updatedTaskData: UpdateTaskDTO = { 
-        title: 'Tarefa atualizada',
-        status: TaskStatus.PENDING
-      };
+      const updatedTaskData: UpdateTaskDTO = { title: 'Tarefa atualizada' };
       const updatedTask = {
         id: taskId,
         title: 'Tarefa atualizada',

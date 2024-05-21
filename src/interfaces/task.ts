@@ -7,7 +7,6 @@ export interface Task {
 export interface UpdateTaskDTO {
   title?: string;
   description?: string;
-  status?: TaskStatus;
 }
 
 export enum TaskStatus {
