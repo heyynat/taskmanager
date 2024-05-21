@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test-coverage": "jest --coverage",
     "vercel-build": "npx prisma generate",
     "dev": "tsx watch src/server.ts",
     "lint": "eslint ./src ./src/tests --ext .ts",
